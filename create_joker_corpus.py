@@ -40,10 +40,9 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    # create new corpus
+    # create new corpus or get corpus id
     # id_corpus = client.createCorpus(corpusName, returns_id=True)
-    # or get corpus
-    id_corpus = client.getCorpora(corpusName);
+    id_corpus = client.getCorpora(corpusName)[0]._id;
 
     mediumNames = [line.rstrip('\n') for line in open(mediaList)]
     mediumPaths = [line.rstrip('\n') for line in open(mediaPath)]
