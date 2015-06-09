@@ -35,16 +35,19 @@ if __name__ == '__main__':
     pwdAdmin = Config.get('userSection', 'pwdAdmin')
     corpusName = Config.get('ressourceSection', 'corpusName')
     mediaList = Config.get('ressourceSection', 'mediaList')
+    mediaPath = Config.get('ressourceSection', 'mediaPath')
 
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
     # create new corpus
     # id_corpus = client.createCorpus(corpusName, returns_id=True)
+    # or get corpus
     id_corpus = client.getCorpora(corpusName);
 
+    mediumNames = [line.rstrip('\n') for line in open(mediaList)]
+    mediumPaths = [line.rstrip('\n') for line in open(mediaPath)]
+
     # add media to corpus
-    for mediumName in open(mediaList).read().splitlines():
-        for id, cat in product(range(0, 36), {'00_defi', '01_blague', '02_cuisine', '03_woz'}):
-            path = '{0:02d}/Video/front/{1}/{2}'.format(id, cat, mediumName)
-            client.createMedium(id_corpus, mediumName, url=path)
+    for i in range(0, len(mediumNames)):
+        client.createMedium(id_corpus, mediumNames[i], url=mediumPaths[i])
