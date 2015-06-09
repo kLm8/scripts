@@ -35,7 +35,6 @@ if __name__ == '__main__':
     pwdUser1 = Config.get('userSection', 'pwdUser1')
     roleUser1 = Config.get('userSection', 'roleUser1')
     corpusName = Config.get('ressourceSection', 'corpusName')
-    shotLayerName = Config.get('ressourceSection', 'shotLayerName')    
 
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
@@ -46,14 +45,14 @@ if __name__ == '__main__':
         sys.exit(0)
     id_corpus = id_corpus[0]
 
-    id_layer = client.getLayers(name=shotLayerName, returns_id=True)
-    if id_layer == []:
-        print shotLayerName, 'is not found in the database'
-        sys.exit(0)
-    id_layer = id_layer[0]
+    # id_layer = client.getLayers(name=shotLayerName, returns_id=True)
+    # if id_layer == []:
+    #     print shotLayerName, 'is not found in the database'
+    #     sys.exit(0)
+    # id_layer = id_layer[0]
 
     id_user = client.createUser(user1, pwdUser1, role=roleUser1, returns_id=True)
 
     client.setCorpusRights(id_corpus, client.ADMIN, user=id_user)
-    client.setLayerRights(id_layer, client.READ, user=id_user)
+    # client.setLayerRights(id_layer, client.READ, user=id_user)
 

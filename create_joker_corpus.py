@@ -23,6 +23,7 @@
 import ConfigParser
 from camomile import Camomile
 import sys
+from itertools import product
 
 if __name__ == '__main__':
     # read config
@@ -44,4 +45,18 @@ if __name__ == '__main__':
 
     # add media to corpus
     for mediumName in open(mediaList).read().splitlines():
-        client.createMedium(id_corpus, mediumName, url=pathToVideo+mediumName)
+        for id, cat in product(range(0, 36), {'00_defi', '01_blague', '02_cuisine', '03_woz'})
+            print '{0:05d}/Video/front/{}/mediumName'.format(id, cat)
+            # client.createMedium(id_corpus, mediumName, url=pathToVideo.format(id=id, cat=cat, name=mediumName))
+
+
+# pathToVideo: {id}/Video/front/{cat}/{name}
+
+# 00/Video/front/00_defi/00_Video_front_00defi_0
+# 00/Video/front/01_blague/00_Video_front_01blague_0
+# 00/Video/front/02_cuisine/00_Video_front_02cuisine_0
+# 00/Video/front/03_woz/00_Video_front_03woz_0
+# 01/Video/front/00_defi/01_Video_front_00defi_0
+# 01/Video/front/01_blague/01_Video_front_01blague_0
+# 01/Video/front/02_cuisine/01_Video_front_02cuisine_0
+# 01/Video/front/03_woz/01_Video_front_03woz_0
