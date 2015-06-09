@@ -41,12 +41,13 @@ if __name__ == '__main__':
     client.login(userAdmin, pwdAdmin)
 
     # create new corpus
-    id_corpus = client.createCorpus(corpusName, returns_id=True)
+    # id_corpus = client.createCorpus(corpusName, returns_id=True)
+    id_corpus = client.getCorpora(corpusName);
 
     # add media to corpus
     for mediumName in open(mediaList).read().splitlines():
-        for id, cat in product(range(0, 36), {'00_defi', '01_blague', '02_cuisine', '03_woz'})
-            print '{0:05d}/Video/front/{}/mediumName'.format(id, cat)
+        for id, cat in product(range(0, 36), {'00_defi', '01_blague', '02_cuisine', '03_woz'}):
+            print '{0:05d}/Video/front/{1}/mediumName'.format(id, cat)
             # client.createMedium(id_corpus, mediumName, url=pathToVideo.format(id=id, cat=cat, name=mediumName))
 
 
