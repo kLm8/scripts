@@ -40,9 +40,12 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    # create new corpus or get corpus id
-    # id_corpus = client.createCorpus(corpusName, returns_id=True)
-    id_corpus = client.getCorpora(corpusName)[0]._id;
+    # get corpus id
+    id_corpus = client.getCorpora(name=corpusName, returns_id=True)
+    if id_corpus == []:
+        print corpusName, 'is not found in the database'
+        sys.exit(0)
+    id_corpus = id_corpus[0]
 
     mediumNames = [line.rstrip('\n') for line in open(mediaList)]
     mediumPaths = [line.rstrip('\n') for line in open(mediaPath)]

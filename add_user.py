@@ -53,6 +53,6 @@ if __name__ == '__main__':
 
     id_user = client.createUser(user1, pwdUser1, role=roleUser1, returns_id=True)
 
-    client.setCorpusRights(id_corpus, client.ADMIN, user=id_user)
-    # client.setLayerRights(id_layer, client.READ, user=id_user)
+    client.setCorpusPermissions(id_corpus, client.ADMIN, user=id_user)
+    # client.setLayerPermissions(id_layer, client.READ, user=id_user)
 
