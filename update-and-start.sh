@@ -75,7 +75,7 @@ docker rm web
 
 echo -e "$CYAN" "\n\tRunning the new container\n""$NORMAL"
 docker run 	-d -p 8070:8070 \
-			-e CAMOMILE_API=http://vmjoker:32769 \
+			-e CAMOMILE_API=http://vmjoker.limsi.fr:32769 \
 			-e CAMOMILE_LOGIN=$1 \
 			-e CAMOMILE_PASSWORD=$2 \
 			--name web \
