@@ -15,11 +15,12 @@
 #
 # Just run :
 # 	
-#	update-and-restart.sh LOGIN PASSWORD
+#	update-and-restart.sh LOGIN PASSWORD CAMOMILE_SERVER_PORT
 #
-# update-and-restart.sh takes only two arguments :
-# 	- LOGIN 	Login for Camomile server
-# 	- PASSWORD 	Password for Camomile server
+# update-and-restart.sh takes 3 arguments :
+# 	- LOGIN 				Login for Camomile server
+# 	- PASSWORD 				Password for Camomile server
+#	- CAMOMILE_SERVER_PORT	Port of the Camomile server container
 #
 ######################################################################################
 
@@ -48,7 +49,7 @@ CYAN="\\033[1;36m"
 #
 ###################################################################################
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 3 ]; then
 	echo -e "$RED" "\nWrong number of arguments\n\n" "$NORMAL"
 	exit
 fi
@@ -75,7 +76,7 @@ docker rm web
 
 echo -e "$CYAN" "\n\tRunning the new container\n""$NORMAL"
 docker run 	-d -p 8070:8070 \
-			-e CAMOMILE_API=http://vmjoker.limsi.fr:32769 \
+			-e CAMOMILE_API=http://vmjoker.limsi.fr:$3 \
 			-e CAMOMILE_LOGIN=$1 \
 			-e CAMOMILE_PASSWORD=$2 \
 			--name web \
