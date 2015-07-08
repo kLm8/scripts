@@ -14,6 +14,7 @@ trap Maid INT
 
 # SSH into the camomile-dev docker container, create /tmp/check-logs.sh and execute it
 docker exec -it camomile-dev script /dev/null -c "'\
+ls \
 cat <<"EOF" > /tmp/check-logs.sh
 #!/bin/bash
 select FILENAME in "/app/log"/*
