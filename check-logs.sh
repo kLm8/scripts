@@ -12,22 +12,27 @@ Maid() {
 # Trap interruption
 trap Maid INT
 
-# SSH into camomile-dev container
-docker exec -t -i camomile-dev /bin/bash
+# Create a container and start a Bash session
+docker run --name camomile-dev_bash --rm -it camomile-dev bash
 
-# Select log file
+# Create /tmp/check-logs.sh inside the running container
+docker exec -d camomile-dev_bash echo "
+#!/bin/bash
 select FILENAME in "/app/log"/*
 do
 	case "$FILENAME" in
 		"$QUIT")
 			echo "Exiting."
-			exit 0
 			break
 		 	;;
 		*)
 			echo "You picked "$FILENAME" "
 			tail -f $FILENAME
-			exit 0
 			;;
 	esac
 done
+exit
+"
+
+# SSH into camomile-dev container
+docker exec -it camomile-dev_bash bash
