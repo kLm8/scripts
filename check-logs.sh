@@ -31,4 +31,4 @@ exit
 EOF
 
 # SSH into the camomile-dev docker container, create /tmp/check-logs.sh and execute it
-docker exec -it camomile-dev bach -c 'echo $script > /tmp/check-logs.sh; /bin/bash /tmp/check-logs.sh'
+docker exec -it camomile-dev bash -c 'echo $script > /tmp/check-logs.sh; /bin/bash /tmp/check-logs.sh'
