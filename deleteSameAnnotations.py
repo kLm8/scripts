@@ -46,8 +46,8 @@ if __name__ == '__main__':
         #     if annotations[i][fragments] not in fragments:
         #         fragments.append(tuple(annotations[i][fragments].items()))
 
-        print('tmp : %d' % len(tmp))
-        print tmp[0]
+        # print('tmp : %d' % len(tmp))
+        # print tmp[0]
 
 
         s = map(set, tmp)
@@ -62,7 +62,7 @@ if __name__ == '__main__':
         #         seen.add(t)
         #         cleaned.append(d)
 
-        print('cleaned : %d' % len(cleaned))
+        print('cleaned : %d\n' % len(cleaned))
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
