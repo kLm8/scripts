@@ -49,7 +49,8 @@ if __name__ == '__main__':
         print('tmp : %d' % len(tmp))
         print tmp[0]
 
-        cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
+
+        cleaned = set(map(set,tmp))
 
         # seen = set()
         # cleaned = []
