@@ -58,7 +58,7 @@ if __name__ == '__main__':
             #     first = s[0]
             #     cleaned = [first] + [i for i in s if not i & first]
 
-            seen = set()
+            seen = map(set, [])
             cleaned = []
             for d in tmp:
                 if d not in seen:
