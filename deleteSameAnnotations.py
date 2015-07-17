@@ -35,29 +35,34 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    annotations = client.getAnnotations()
-    print len(annotations)
+    for l in client.getLayers():
+        annotations = client.getAnnotations(l._id)
+        print len(annotations)
 
-    cleaned = []
+        duplicates = []
 
-    for i in range(0, len(annotations)-5350):
-        print annotations[i]
-        if annotations[i] not in annotations[i+1:]:
-            cleaned.append(annotations[i])
+        for i in range(0, len(annotations)-1):
+            start_i = annotations[i]['fragment']['start']
+            end_i   = annotations[i]['fragment']['end']
+            for j in range(i+1, len(annotations)):
+                start_j = annotations[j]['fragment']['start']
+                end_j   = annotations[j]['fragment']['end']
+                if start_i == start_j and end_i == end_j:
+                    duplicates.append(annotations[i])
 
-    print len(cleaned)
+        print len(duplicates)
 
-    # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
+        # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
-    # seen = set()
-    # new_l = []
-    # for d in annotations:
-    #     t = tuple(d.items())
-    #     if t not in seen:
-    #         seen.add(t)
-    #         new_l.append(d)
+        # seen = set()
+        # new_l = []
+        # for d in annotations:
+        #     t = tuple(d.items())
+        #     if t not in seen:
+        #         seen.add(t)
+        #         new_l.append(d)
 
-    # print len(new_l)
+        # print len(new_l)
 
 
 
