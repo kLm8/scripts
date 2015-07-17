@@ -37,9 +37,13 @@ if __name__ == '__main__':
     client.login(userAdmin, pwdAdmin)
 
     annotations = client.getAnnotations()
-
-    cleaned = sorted(set(annotations))
-
     print len(annotations)
+
+    cleaned = []
+
+    for i in range(0, len(annotations)):
+        if annotations[i] not in annotations[i+1:]:
+            cleaned.append(annotations[i])
+
     print len(cleaned)
 
