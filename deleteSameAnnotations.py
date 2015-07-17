@@ -40,8 +40,8 @@ if __name__ == '__main__':
         print('annotations : %d' % len(annotations))
 
         fragments = [tuple(a['fragment'].items()) for a in annotations]
-        ids = [tuple(a['_id'].items()) for a in annotations]
-        datas = [tuple(a['data'].items()) for a in annotations]
+        ids = [tuple(a['_id']) for a in annotations]
+        datas = [tuple(a['data']) for a in annotations]
 
         # for i in range(0, len(annotations)):
         #     print tuple(annotations[i]['fragment'].items())
