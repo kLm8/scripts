@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
         fragments = []
         for i in range(0, len(annotations)):
-            fragments.append(annotations[i][fragments])
+            fragments.append(tuple(annotations[i][fragments].items())
 
         print('fragments : %d' % len(fragments))
         print fragments[0]
