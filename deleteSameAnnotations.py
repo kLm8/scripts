@@ -52,7 +52,7 @@ if __name__ == '__main__':
             # print tmp[0]
 
             # cleaned = []
-            # tmp = map(set, tmp)
+            tmp = map(set, tmp)
 
             # if len(s) > 0:
             #     first = s[0]
