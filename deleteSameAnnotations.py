@@ -39,7 +39,7 @@ if __name__ == '__main__':
         annotations = client.getAnnotations(l._id)
         print('annotations : %d' % len(annotations))
 
-        tmp = [(tuple(a['fragment'].items()), (u'_id', a['_id']), (u'data', a['data'])) for a in annotations]
+        tmp = [list(tuple(a['fragment'].items()), (u'_id', a['_id']), (u'data', a['data'])) for a in annotations]
 
         # for i in range(0, len(annotations)):
         #     print tuple(annotations[i]['fragment'].items())
