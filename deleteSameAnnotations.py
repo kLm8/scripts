@@ -49,7 +49,7 @@ if __name__ == '__main__':
         print('tmp : %d' % len(tmp))
         print tmp[0]
 
-        # cleaned = list(set(tmp))
+        cleaned = set(tmp)
 
         # seen = set()
         # cleaned = []
@@ -59,7 +59,7 @@ if __name__ == '__main__':
         #         seen.add(t)
         #         cleaned.append(d)
 
-        # print('cleaned : %d' % len(cleaned))
+        print('cleaned : %d' % len(cleaned))
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
