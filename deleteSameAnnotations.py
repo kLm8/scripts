@@ -36,11 +36,11 @@ if __name__ == '__main__':
     client.login(userAdmin, pwdAdmin)
 
     def merge(x):
-    s = set()
-    for i in x:
-        if not s.intersection(i):
-            yield i
-            s.update(i)
+        s = set()
+        for i in x:
+            if not s.intersection(i):
+                yield i
+                s.update(i)
 
     for l in client.getLayers():
         print l.name
