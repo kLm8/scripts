@@ -47,7 +47,10 @@ if __name__ == '__main__':
         #         fragments.append(tuple(annotations[i][fragments].items()))
 
         print('tmp : %d' % len(tmp))
-        print tmp[0]
+
+        cleaned = set(tmp)
+
+        print('cleaned : %d' % len(cleaned))
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
