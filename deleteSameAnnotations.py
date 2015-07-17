@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     for l in client.getLayers():
         annotations = client.getAnnotations(l._id)
-        print len(annotations)
+        print('annotations : %d' % len(annotations))
 
         duplicates = []
 
@@ -50,7 +50,7 @@ if __name__ == '__main__':
                 if start_i == start_j and end_i == end_j:
                     duplicates.append(annotations[i])
 
-        print len(duplicates)
+        print('duplicates : %d' % len(duplicates))
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
