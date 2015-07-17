@@ -48,12 +48,15 @@ if __name__ == '__main__':
         #     if annotations[i][fragments] not in fragments:
         #         fragments.append(tuple(annotations[i][fragments].items()))
 
-        print('fragments : %d' % len(fragments))
-        print fragments[0]
-        print('ids : %d' % len(ids))
-        print ids[0]
-        print('datas : %d' % len(datas))
-        print datas[0]
+        # print('fragments : %d' % len(fragments))
+        # print fragments[0]
+        # print('ids : %d' % len(ids))
+        # print ids[0]
+        # print('datas : %d' % len(datas))
+        # print datas[0]
+
+        cleaned = zip(fragments, ids, datas)
+        print cleaned[0]
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
