@@ -40,11 +40,13 @@ if __name__ == '__main__':
         print('annotations : %d' % len(annotations))
 
         fragments = []
-        for i in range(0, len(annotations)):
-            fragments.append(tuple(annotations[i][fragments].items()))
+        for i in range(0, len(annotations)-5350):
+            print annotations[i][fragments]
+        #     if annotations[i][fragments] not in fragments:
+        #         fragments.append(tuple(annotations[i][fragments].items()))
 
-        print('fragments : %d' % len(fragments))
-        print fragments[0]
+        # print('fragments : %d' % len(fragments))
+        # print fragments[0]
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
