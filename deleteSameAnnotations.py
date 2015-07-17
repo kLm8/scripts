@@ -39,14 +39,15 @@ if __name__ == '__main__':
         annotations = client.getAnnotations(l._id)
         print('annotations : %d' % len(annotations))
 
-        fragments = []
-        for i in range(0, len(annotations)):
-            print tuple(annotations[i]['fragment'].items())
+        fragments = [tuple(a['fragment'].items()) for a in annotations]
+
+        # for i in range(0, len(annotations)):
+        #     print tuple(annotations[i]['fragment'].items())
         #     if annotations[i][fragments] not in fragments:
         #         fragments.append(tuple(annotations[i][fragments].items()))
 
-        # print('fragments : %d' % len(fragments))
-        # print fragments[0]
+        print('fragments : %d' % len(fragments))
+        print fragments[0]
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
