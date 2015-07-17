@@ -55,8 +55,9 @@ if __name__ == '__main__':
         # print('datas : %d' % len(datas))
         # print datas[0]
 
-        cleaned = zip(fragments, ids, datas)
-        print cleaned[0]
+        tmp = zip(fragments, ids, datas)
+        cleaned = set(sorted(tmp))
+        print len(cleaned)
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
