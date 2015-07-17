@@ -31,16 +31,9 @@ if __name__ == '__main__':
     server = Config.get('mainSection', 'url')+":"+Config.get('mainSection', 'port')
     userAdmin = Config.get('userSection', 'userAdmin')
     pwdAdmin = Config.get('userSection', 'pwdAdmin')
-    corpusName = Config.get('ressourceSection', 'corpusName')
 
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    # get corpus id
-    id_corpus = client.getCorpora(name=corpusName, returns_id=True)
-    if id_corpus == []:
-        print corpusName, 'is not found in the database'
-        sys.exit(0)
-    id_corpus = id_corpus[0]
+    print(len(client.getAnnotations))
 
-    
