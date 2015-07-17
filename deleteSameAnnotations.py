@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
         print('tmp : %d' % len(tmp))
 
-        cleaned = set(sorted(tmp))
+        cleaned = list(set(tmp))
 
         print('cleaned : %d' % len(cleaned))
 
