@@ -39,23 +39,15 @@ if __name__ == '__main__':
         annotations = client.getAnnotations(l._id)
         print('annotations : %d' % len(annotations))
 
-        fragments = [tuple(a['fragment'].items()) for a in annotations]
-        ids = [a['_id'] for a in annotations]
-        datas = [a['data'] for a in annotations]
+        tmp = [tuple(a['fragment'].items()) + tuple('_id', a['_id']) + tuple('data', a['data']) for a in annotations]
 
         # for i in range(0, len(annotations)):
         #     print tuple(annotations[i]['fragment'].items())
         #     if annotations[i][fragments] not in fragments:
         #         fragments.append(tuple(annotations[i][fragments].items()))
 
-        # print('fragments : %d' % len(fragments))
-        # print fragments[0]
-        # print('ids : %d' % len(ids))
-        # print ids[0]
-        # print('datas : %d' % len(datas))
-        # print datas[0]
-
-        tmp = zip(fragments, ids, datas)
+        print('tmp : %d' % len(tmp))
+        print tmp[0]
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
@@ -74,14 +66,15 @@ if __name__ == '__main__':
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
-        seen = set()
-        new_l = []
-        for d in tmp:
-            if d not in seen:
-                seen.add(d)
-                new_l.append(d)
+        # seen = set()
+        # new_l = []
+        # for d in annotations:
+        #     t = tuple(d.items())
+        #     if t not in seen:
+        #         seen.add(t)
+        #         new_l.append(d)
 
-        print len(new_l)
+        # print len(new_l)
 
 
 
