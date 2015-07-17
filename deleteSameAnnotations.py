@@ -38,23 +38,25 @@ if __name__ == '__main__':
     annotations = client.getAnnotations()
     print len(annotations)
 
-    # cleaned = []
+    cleaned = []
 
-    # for i in range(0, len(annotations)):
-    #     if annotations[i] not in annotations[i+1:]:
-    #         cleaned.append(annotations[i])
+    for i in range(0, len(annotations)):
+        if annotations[i].data not in annotations[i+1:].data:
+            cleaned.append(annotations[i])
+
+    print len(cleaned)
 
     # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
-    seen = set()
-    new_l = []
-    for d in annotations:
-        print d
-        t = tuple(d.items())
-        if t not in seen:
-            seen.add(t)
-            new_l.append(d)
+    # seen = set()
+    # new_l = []
+    # for d in annotations:
+    #     t = tuple(d.items())
+    #     if t not in seen:
+    #         seen.add(t)
+    #         new_l.append(d)
 
-    print len(new_l)
+    # print len(new_l)
+
 
 
