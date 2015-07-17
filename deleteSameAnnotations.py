@@ -53,12 +53,12 @@ if __name__ == '__main__':
         seen = set()
         cleaned = []
         for d in tmp:
-            t = tuple(d.items())
-            if t not in seen:
-                seen.add(t)
-                cleaned.append(d)
+            print d
+        #     if t not in seen:
+        #         seen.add(t)
+        #         cleaned.append(d)
 
-        print('cleaned : %d' % len(cleaned))
+        # print('cleaned : %d' % len(cleaned))
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
