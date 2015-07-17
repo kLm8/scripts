@@ -50,7 +50,9 @@ if __name__ == '__main__':
         print tmp[0]
 
 
-        cleaned = set(map(set,tmp))
+        s = map(set, tmp)
+        first = s[0]
+        cleaned = [first] + [i for i in s if not i & first]
 
         # seen = set()
         # cleaned = []
