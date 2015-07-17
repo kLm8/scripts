@@ -46,19 +46,15 @@ if __name__ == '__main__':
 
     # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
-    # seen = set()
-    # new_l = []
-    # for d in annotations:
-    #     t = tuple(d.items())
-    #     if t not in seen:
-    #         seen.add(t)
-    #         new_l.append(d)
+    seen = set()
+    new_l = []
+    for d in annotations:
+        print d
+        t = tuple(d.items())
+        if t not in seen:
+            seen.add(t)
+            new_l.append(d)
 
-    # print len(new_l)
-
-    unique_sets = set(frozenset(d.items()) for d in annotations)
-    unique_dicts = [dict(s) for s in unique_sets]
-
-    print len(unique_dicts)
+    print len(new_l)
 
 
