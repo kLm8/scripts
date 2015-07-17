@@ -41,9 +41,11 @@ if __name__ == '__main__':
 
     cleaned = []
 
-    for i in range(0, len(annotations)):
-        if annotations[i] not in annotations[i+1:]:
-            cleaned.append(annotations[i])
+    # for i in range(0, len(annotations)):
+    #     if annotations[i] not in annotations[i+1:]:
+    #         cleaned.append(annotations[i])
+
+    cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
     print len(cleaned)
 
