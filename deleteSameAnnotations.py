@@ -35,56 +35,63 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
+    def merge(x):
+    s = set()
+    for i in x:
+        if not s.intersection(i):
+            yield i
+            s.update(i)
+
     for l in client.getLayers():
-        if "audio/tour humain_annotateur1" in l.name:
-            print l.name
-            annotations = client.getAnnotations(l._id)
-            print('annotations : %d' % len(annotations))
+        print l.name
+        annotations = client.getAnnotations(l._id)
+        print('annotations : %d' % len(annotations))
 
-            tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'_id', a['_id']), (u'data', a['data'])] for a in annotations]
+        tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'_id', a['_id']), (u'data', a['data'])] for a in annotations]
 
-            # for i in range(0, len(annotations)):
-            #     print tuple(annotations[i]['fragment'].items())
-            #     if annotations[i][fragments] not in fragments:
-            #         fragments.append(tuple(annotations[i][fragments].items()))
+        cleaned = list(merge(tmp))
 
-            # print('tmp : %d' % len(tmp))
-            # print tmp[0]
+        print('annotations cleaned : %d\n' % len(cleaned))
 
-            # cleaned = []
-            tmp = map(set, tmp)
+        # for i in range(0, len(annotations)):
+        #     print tuple(annotations[i]['fragment'].items())
+        #     if annotations[i][fragments] not in fragments:
+        #         fragments.append(tuple(annotations[i][fragments].items()))
 
-            # if len(s) > 0:
-            #     first = s[0]
-            #     cleaned = [first] + [i for i in s if not i & first]
+        # print('tmp : %d' % len(tmp))
+        # print tmp[0]
 
-            seen = set()
-            cleaned = [x for x in tmp if x not in seen and not seen.add(x)]
+        # cleaned = []
+        # tmp = map(set, tmp)
 
-            # cleaned = []
-            # for d in tmp:
-            #     if d not in seen:
-            #         seen.add(d)
-            #         cleaned.append(d)
+        # if len(s) > 0:
+        #     first = s[0]
+        #     cleaned = [first] + [i for i in s if not i & first]
 
-            print('annotations cleaned : %d\n' % len(cleaned))
+        # seen = set()
+        # cleaned = []
+        # for d in tmp:
+        #     if d not in seen:
+        #         seen.add(d)
+        #         cleaned.append(d)
 
-            # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
-            # duplicates = []
+        # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
-            # for i in range(0, len(annotations)-1):
-            #     start_i = annotations[i]['fragment']['start']
-            #     end_i   = annotations[i]['fragment']['end']
-            #     for j in range(i+1, len(annotations)):
-            #         start_j = annotations[j]['fragment']['start']
-            #         end_j   = annotations[j]['fragment']['end']
-            #         if start_i == start_j and end_i == end_j:
-            #             duplicates.append(annotations[i])
+        # duplicates = []
 
-            # print('duplicates : %d' % len(duplicates))
+        # for i in range(0, len(annotations)-1):
+        #     start_i = annotations[i]['fragment']['start']
+        #     end_i   = annotations[i]['fragment']['end']
+        #     for j in range(i+1, len(annotations)):
+        #         start_j = annotations[j]['fragment']['start']
+        #         end_j   = annotations[j]['fragment']['end']
+        #         if start_i == start_j and end_i == end_j:
+        #             duplicates.append(annotations[i])
 
-            # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
+        # print('duplicates : %d' % len(duplicates))
+
+        # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
         
 
