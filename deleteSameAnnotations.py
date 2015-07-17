@@ -39,18 +39,27 @@ if __name__ == '__main__':
         annotations = client.getAnnotations(l._id)
         print('annotations : %d' % len(annotations))
 
-        duplicates = []
+        fragments = []
+        for i in range(0, len(annotations)):
+            fragments.append(annotations[i][fragments])
 
-        for i in range(0, len(annotations)-1):
-            start_i = annotations[i]['fragment']['start']
-            end_i   = annotations[i]['fragment']['end']
-            for j in range(i+1, len(annotations)):
-                start_j = annotations[j]['fragment']['start']
-                end_j   = annotations[j]['fragment']['end']
-                if start_i == start_j and end_i == end_j:
-                    duplicates.append(annotations[i])
+        print('fragments : %d' % len(fragments))
+        print fragments[0]
 
-        print('duplicates : %d' % len(duplicates))
+        # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
+
+        # duplicates = []
+
+        # for i in range(0, len(annotations)-1):
+        #     start_i = annotations[i]['fragment']['start']
+        #     end_i   = annotations[i]['fragment']['end']
+        #     for j in range(i+1, len(annotations)):
+        #         start_j = annotations[j]['fragment']['start']
+        #         end_j   = annotations[j]['fragment']['end']
+        #         if start_i == start_j and end_i == end_j:
+        #             duplicates.append(annotations[i])
+
+        # print('duplicates : %d' % len(duplicates))
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
