@@ -36,5 +36,5 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    print(len(client.getAnnotations))
+    print(len(client.getAnnotations()))
 
