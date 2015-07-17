@@ -52,18 +52,20 @@ if __name__ == '__main__':
             # print tmp[0]
 
             # cleaned = []
-            tmp = map(set, tmp)
+            # tmp = map(set, tmp)
 
             # if len(s) > 0:
             #     first = s[0]
             #     cleaned = [first] + [i for i in s if not i & first]
 
-            seen = map(set, [])
-            cleaned = []
-            for d in tmp:
-                if d not in seen:
-                    seen.add(d)
-                    cleaned.append(d)
+            seen = set()
+            cleaned = [x for x in tmp if x not in seen and not seen.add(x)]
+
+            # cleaned = []
+            # for d in tmp:
+            #     if d not in seen:
+            #         seen.add(d)
+            #         cleaned.append(d)
 
             print('annotations cleaned : %d\n' % len(cleaned))
 
