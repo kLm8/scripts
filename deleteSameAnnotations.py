@@ -36,5 +36,10 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    print(len(client.getAnnotations()))
+    annotations = client.getAnnotations()
+
+    cleaned = sorted(set(annotations))
+
+    print len(annotations)
+    print len(cleaned)
 
