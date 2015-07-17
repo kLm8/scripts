@@ -56,8 +56,6 @@ if __name__ == '__main__':
         # print datas[0]
 
         tmp = zip(fragments, ids, datas)
-        cleaned = [dict(t) for t in set([d for d in tmp])]
-        print len(cleaned)
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
@@ -76,15 +74,15 @@ if __name__ == '__main__':
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
-        # seen = set()
-        # new_l = []
-        # for d in annotations:
-        #     t = tuple(d.items())
-        #     if t not in seen:
-        #         seen.add(t)
-        #         new_l.append(d)
+        seen = set()
+        new_l = []
+        for d in tmp:
+            t = tuple(d.items())
+            if t not in seen:
+                seen.add(t)
+                new_l.append(d)
 
-        # print len(new_l)
+        print len(new_l)
 
 
 
