@@ -36,6 +36,7 @@ if __name__ == '__main__':
     client.login(userAdmin, pwdAdmin)
 
     for l in client.getLayers():
+        print l.name
         annotations = client.getAnnotations(l._id)
         print('annotations : %d' % len(annotations))
 
@@ -64,7 +65,7 @@ if __name__ == '__main__':
         #         seen.add(t)
         #         cleaned.append(d)
 
-        print('cleaned : %d\n' % len(cleaned))
+        print('annotations cleaned : %d\n' % len(cleaned))
 
         # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
 
