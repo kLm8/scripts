@@ -77,9 +77,8 @@ if __name__ == '__main__':
         seen = set()
         new_l = []
         for d in tmp:
-            t = tuple(d.items())
-            if t not in seen:
-                seen.add(t)
+            if d not in seen:
+                seen.add(d)
                 new_l.append(d)
 
         print len(new_l)
