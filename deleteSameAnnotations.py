@@ -35,13 +35,20 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
+    
     ans = raw_input("Write 'delete' to delete annotations starting with 'DELETE__' (or press enter to continue): ")
+    
+    count = 0
     if(ans == "delete"):
-        print "\tdeleting..."
+        print "\n\tdeleting..."
         for a in client.getAnnotations():
             if 'DELETE__' in a.data:
                 client.deleteAnnotation(a._id)
+                count++
+        print "\n\t%d annotations deleted" % count
 
+    
+    count = 0
     for l in client.getLayers():
         print l.name
         annotations = client.getAnnotations(l._id)
@@ -52,18 +59,22 @@ if __name__ == '__main__':
         # for a in annotations:
         #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
+        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
 
         cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
         print('annotations cleaned : %d\n' % len(cleaned))
 
-        print "\nannotations:\n\n"
-        for x in sorted(tmp, key=lambda k: k['start']):
-            print x
+        count += len(cleaned)
 
-        print "\ncleaned:\n\n"
+        # print "\nannotations:\n\n"
+        # for x in sorted(tmp, key=lambda k: k['start']):
+        #     print x
 
-        for x in sorted(cleaned, key=lambda k: k['start']):
-            print x
+        # print "\ncleaned:\n\n"
 
+        # for x in sorted(cleaned, key=lambda k: k['start']):
+        #     print x
+
+    print "\n\nTotal annotations: \t%d" % len(client.getAnnotations())
+    print "Total annotations cleaned: \t%d" % count
