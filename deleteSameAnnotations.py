@@ -57,8 +57,11 @@ if __name__ == '__main__':
 
             print('annotations cleaned : %d\n' % len(cleaned))
 
+            print "\nannotations:\n\n"
             for x in sorted(tmp):
                 print x
+
+            print "\ncleaned:\n\n"
 
             for x in sorted(cleaned):
                 print x
