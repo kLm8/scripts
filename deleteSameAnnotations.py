@@ -66,17 +66,22 @@ if __name__ == '__main__':
 
             seen = set()
             doublons = []
-            for d in tmp:
-                t = tuple(d.items())
+            indices = []
+            for i in range(0, len(tmp)):
+                t = tuple(tmp[i].items())
                 if t not in seen:
                     seen.add(t)
                 else:
-                    doublons.append(d)
+                    doublons.append(tmp[i])
+                    indices.append(i)
 
             print('annotations cleaned : %d' % len(cleaned))
             print('doublons : %d\n' % len(doublons))
 
             count += len(cleaned)
+
+            for i in range(0, len(indices)):
+                print tmp[i]
 
             # print "\nannotations:\n\n"
             # for x in sorted(tmp, key=lambda k: k['start']):
