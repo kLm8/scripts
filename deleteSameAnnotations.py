@@ -50,49 +50,51 @@ if __name__ == '__main__':
     
     count = 0
     for l in client.getLayers():
-        if "annotateur" in l.name:
-            print l.name
-            annotations = client.getAnnotations(l._id)
-            print('annotations : %d' % len(annotations))
+        # if "annotateur" in l.name:
+        print l.name
+        annotations = client.getAnnotations(l._id)
+        print('annotations : %d' % len(annotations))
 
-            # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
-            # tmp = []
-            # for a in annotations:
-            #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
+        # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
+        # tmp = []
+        # for a in annotations:
+        #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-            tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
+        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
 
-            cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
+        cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
-            seen = set()
-            doublons = []
-            indices = []
-            for i in range(0, len(tmp)):
-                t = tuple(tmp[i].items())
-                if t not in seen:
-                    seen.add(t)
-                else:
-                    doublons.append(tmp[i])
-                    indices.append(i)
+        seen = set()
+        doublons = []
+        indices = []
+        for i in range(0, len(tmp)):
+            t = tuple(tmp[i].items())
+            if t not in seen:
+                seen.add(t)
+            else:
+                doublons.append(tmp[i])
+                indices.append(i)
 
-            print('annotations cleaned : %d' % len(cleaned))
-            print('doublons : %d\n' % len(doublons))
-            print('indices : %d\n' % len(indices))
+        print('annotations cleaned : %d' % len(cleaned))
+        print('doublons : %d\n' % len(doublons))
+        print('indices : %d\n' % len(indices))
 
-            count += len(cleaned)
+        count += len(cleaned)
 
-            for i in range(0, len(indices)):
-                print annotations[i]
+        for i in range(0, len(indices)):
+            data = "DELETE__%s" % annotations[i].data
+            client.updateAnnotation(annotations[i]._id, data=data)
 
-            # print "\nannotations:\n\n"
-            # for x in sorted(tmp, key=lambda k: k['start']):
-            #     print x
+        # print "\nannotations:\n\n"
+        # for x in sorted(tmp, key=lambda k: k['start']):
+        #     print x
 
-            # print "\ncleaned:\n\n"
+        # print "\ncleaned:\n\n"
 
-            # for x in sorted(cleaned, key=lambda k: k['start']):
-            #     print x
+        # for x in sorted(cleaned, key=lambda k: k['start']):
+        #     print x
 
-    # print "\n\nComputing grand total..."
-    # print "\nTotal annotations: \t\t%d" % len(client.getAnnotations())
-    # print "Total annotations cleaned: \t%d" % count
+    print "\n\nComputing grand total..."
+    print "\nTotal annotations: \t\t%d" % len(client.getAnnotations())
+    print "Total annotations cleaned: \t%d" % count
+
