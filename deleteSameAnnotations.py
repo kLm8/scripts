@@ -60,7 +60,7 @@ if __name__ == '__main__':
             for x in sorted(tmp):
                 print x
 
-            for x in sorted cleaned:
+            for x in sorted(cleaned):
                 print x
 
             # for i in range(0, len(annotations)):
