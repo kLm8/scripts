@@ -77,11 +77,12 @@ if __name__ == '__main__':
 
             print('annotations cleaned : %d' % len(cleaned))
             print('doublons : %d\n' % len(doublons))
+            print('indices : %d\n' % len(indices))
 
             count += len(cleaned)
 
             for i in range(0, len(indices)):
-                print tmp[i]
+                print annotations[i]
 
             # print "\nannotations:\n\n"
             # for x in sorted(tmp, key=lambda k: k['start']):
