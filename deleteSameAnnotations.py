@@ -58,12 +58,12 @@ if __name__ == '__main__':
             print('annotations cleaned : %d\n' % len(cleaned))
 
             print "\nannotations:\n\n"
-            for x in sorted(tmp):
+            for x in sorted(tmp, key=lambda k: k['start']):
                 print x
 
             print "\ncleaned:\n\n"
 
-            for x in sorted(cleaned):
+            for x in sorted(cleaned, key=lambda k: k['start']):
                 print x
 
             # for i in range(0, len(annotations)):
