@@ -36,19 +36,9 @@ if __name__ == '__main__':
     client.login(userAdmin, pwdAdmin)
 
     
-    ans = raw_input("\nWrite 'delete' to delete annotations starting with 'DELETE__' (or press enter to continue): ")
-    
     count = 0
-    if(ans == "delete"):
-        print "\n\tdeleting..."
-        for a in client.getAnnotations():
-            if 'DELETE__' in a.data:
-                client.deleteAnnotation(a._id)
-                count += 1
-        print "\n\t%d annotations deleted" % count
+    deleted = 0
 
-    
-    count = 0
     for l in client.getLayers():
         # if "annotateur" in l.name:
         print l.name
@@ -77,13 +67,14 @@ if __name__ == '__main__':
 
         print('annotations cleaned : %d' % len(cleaned))
         print('doublons : %d\n' % len(doublons))
-        print('indices : %d\n' % len(indices))
 
         count += len(cleaned)
+        deleted += len(doublons)
 
-        for i in range(0, len(indices)):
-            data = "DELETE__%s" % annotations[i].data
-            client.updateAnnotation(annotations[i]._id, data=data)
+        for i in indices:
+            # data = "DELETE__%s" % annotations[i].data
+            # client.createAnnotation(layer=l._id, medium=annotations[i].id_medium, fragment=annotations[i].fragment, data=data)
+            client.deleteAnnotation(annotations[i]._id)
 
         # print "\nannotations:\n\n"
         # for x in sorted(tmp, key=lambda k: k['start']):
@@ -94,7 +85,21 @@ if __name__ == '__main__':
         # for x in sorted(cleaned, key=lambda k: k['start']):
         #     print x
 
+
+
+    ans = raw_input("\nWrite 'delete' to delete annotations starting with 'DELETE__' (or press enter to continue): ")
+
+    if(ans == "delete"):
+        print "\n\tdeleting..."
+        for a in client.getAnnotations():
+            if 'DELETE__' in a.data:
+                client.deleteAnnotation(a._id)
+                deleted += 1
+        print "\n\t%d annotations deleted" % count
+
+    
     print "\n\nComputing grand total..."
     print "\nTotal annotations: \t\t%d" % len(client.getAnnotations())
     print "Total annotations cleaned: \t%d" % count
+    print "Total annotations deleted: \t%d" % deleted
 
