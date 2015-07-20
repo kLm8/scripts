@@ -51,7 +51,7 @@ if __name__ == '__main__':
             # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
             tmp = []
             for a in annotations:
-                tmp.append({start: a['fragment']['start'], end: a['fragment']['end'], data: a['data']})
+                tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
             print tmp[0]
             print len(tmp)
