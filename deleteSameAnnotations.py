@@ -35,9 +35,12 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    # for a in client.getAnnotations():
-    #     if 'DELETE__' in a.data:
-    #         client.deleteAnnotation(a._id)
+    ans = raw_input("Write 'delete' to delete annotations starting with 'DELETE__' (or press enter to continue): ")
+    if(ans == "delete"):
+        print "\tdeleting..."
+        for a in client.getAnnotations():
+            if 'DELETE__' in a.data:
+                client.deleteAnnotation(a._id)
 
     for l in client.getLayers():
         print l.name
@@ -63,3 +66,4 @@ if __name__ == '__main__':
 
         for x in sorted(cleaned, key=lambda k: k['start']):
             print x
+
