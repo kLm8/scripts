@@ -35,78 +35,31 @@ if __name__ == '__main__':
     client = Camomile(server)
     client.login(userAdmin, pwdAdmin)
 
-    def merge(x):
-        s = set()
-        for i in x:
-            if not s.intersection(i):
-                yield i
-                s.update(i)
+    # for a in client.getAnnotations():
+    #     if 'DELETE__' in a.data:
+    #         client.deleteAnnotation(a._id)
 
     for l in client.getLayers():
-        if "audio/affect burst_annotateur1" == l.name:
-            print l.name
-            annotations = client.getAnnotations(l._id)
-            print('annotations : %d' % len(annotations))
+        print l.name
+        annotations = client.getAnnotations(l._id)
+        print('annotations : %d' % len(annotations))
 
-            # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
-            tmp = []
-            for a in annotations:
-                tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
+        # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
+        # tmp = []
+        # for a in annotations:
+        #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-            cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
+        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
 
-            print('annotations cleaned : %d\n' % len(cleaned))
+        cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
-            print "\nannotations:\n\n"
-            for x in sorted(tmp, key=lambda k: k['start']):
-                print x
+        print('annotations cleaned : %d\n' % len(cleaned))
 
-            print "\ncleaned:\n\n"
+        print "\nannotations:\n\n"
+        for x in sorted(tmp, key=lambda k: k['start']):
+            print x
 
-            for x in sorted(cleaned, key=lambda k: k['start']):
-                print x
+        print "\ncleaned:\n\n"
 
-            # for i in range(0, len(annotations)):
-            #     print tuple(annotations[i]['fragment'].items())
-            #     if annotations[i][fragments] not in fragments:
-            #         fragments.append(tuple(annotations[i][fragments].items()))
-
-            # print('tmp : %d' % len(tmp))
-            # print tmp[0]
-
-            # cleaned = []
-            # tmp = map(set, tmp)
-
-            # if len(s) > 0:
-            #     first = s[0]
-            #     cleaned = [first] + [i for i in s if not i & first]
-
-            # seen = set()
-            # cleaned = []
-            # for d in tmp:
-            #     if d not in seen:
-            #         seen.add(d)
-            #         cleaned.append(d)
-
-
-            # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
-
-            # duplicates = []
-
-            # for i in range(0, len(annotations)-1):
-            #     start_i = annotations[i]['fragment']['start']
-            #     end_i   = annotations[i]['fragment']['end']
-            #     for j in range(i+1, len(annotations)):
-            #         start_j = annotations[j]['fragment']['start']
-            #         end_j   = annotations[j]['fragment']['end']
-            #         if start_i == start_j and end_i == end_j:
-            #             duplicates.append(annotations[i])
-
-            # print('duplicates : %d' % len(duplicates))
-
-            # cleaned = [dict(t) for t in set([tuple(d.items()) for d in annotations])]
-
-        
-
-
-
+        for x in sorted(cleaned, key=lambda k: k['start']):
+            print x
