@@ -44,7 +44,7 @@ if __name__ == '__main__':
         for a in client.getAnnotations():
             if 'DELETE__' in a.data:
                 client.deleteAnnotation(a._id)
-                count++
+                count += 1
         print "\n\t%d annotations deleted" % count
 
     
