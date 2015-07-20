@@ -36,7 +36,7 @@ if __name__ == '__main__':
     client.login(userAdmin, pwdAdmin)
 
     
-    ans = raw_input("Write 'delete' to delete annotations starting with 'DELETE__' (or press enter to continue): ")
+    ans = raw_input("\nWrite 'delete' to delete annotations starting with 'DELETE__' (or press enter to continue): ")
     
     count = 0
     if(ans == "delete"):
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     
     count = 0
     for l in client.getLayers():
-        # print l.name
+        print l.name
         annotations = client.getAnnotations(l._id)
         # print('annotations : %d' % len(annotations))
 
@@ -59,8 +59,8 @@ if __name__ == '__main__':
         # for a in annotations:
         #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-        # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
-        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
+        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
+        # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
 
         cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
