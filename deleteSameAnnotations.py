@@ -53,12 +53,9 @@ if __name__ == '__main__':
             for a in annotations:
                 tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-            print tmp[0]
-            print len(tmp)
+            cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
-            # cleaned = list(merge(tmp))
-
-            # print('annotations cleaned : %d\n' % len(cleaned))
+            print('annotations cleaned : %d\n' % len(cleaned))
 
             # for i in range(0, len(annotations)):
             #     print tuple(annotations[i]['fragment'].items())
