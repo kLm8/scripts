@@ -54,7 +54,8 @@ if __name__ == '__main__':
             print l.name
             annotations = client.getAnnotations(l._id)
             print('annotations : %d' % len(annotations))
-            if annotations[0] print annotations[0]
+            if annotations[0]:
+                print annotations[0]
 
             # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
             # tmp = []
