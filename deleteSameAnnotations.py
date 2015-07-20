@@ -38,9 +38,8 @@ if __name__ == '__main__':
     def merge(x):
         s = set()
         for i in x:
-            if s.intersection(i):
+            if not s.intersection(i):
                 yield i
-                print i
                 s.update(i)
 
     for l in client.getLayers():
