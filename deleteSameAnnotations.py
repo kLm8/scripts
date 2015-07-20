@@ -50,33 +50,35 @@ if __name__ == '__main__':
     
     count = 0
     for l in client.getLayers():
-        print l.name
-        annotations = client.getAnnotations(l._id)
-        # print('annotations : %d' % len(annotations))
+        if "old" in l.name:
+            print l.name
+            annotations = client.getAnnotations(l._id)
+            print('annotations : %d' % len(annotations))
+            if annotations[0] print annotations[0]
 
-        # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
-        # tmp = []
-        # for a in annotations:
-        #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
+            # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
+            # tmp = []
+            # for a in annotations:
+            #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
-        # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
+            tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], u'id_medium': a['id_medium']} for a in annotations]
+            # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
 
-        cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
+            cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
-        # print('annotations cleaned : %d\n' % len(cleaned))
+            print('annotations cleaned : %d\n' % len(cleaned))
 
-        count += len(cleaned)
+            count += len(cleaned)
 
-        # print "\nannotations:\n\n"
-        # for x in sorted(tmp, key=lambda k: k['start']):
-        #     print x
+            # print "\nannotations:\n\n"
+            # for x in sorted(tmp, key=lambda k: k['start']):
+            #     print x
 
-        # print "\ncleaned:\n\n"
+            # print "\ncleaned:\n\n"
 
-        # for x in sorted(cleaned, key=lambda k: k['start']):
-        #     print x
+            # for x in sorted(cleaned, key=lambda k: k['start']):
+            #     print x
 
-    print "\n\nComputing grand total..."
-    print "\nTotal annotations: \t\t%d" % len(client.getAnnotations())
-    print "Total annotations cleaned: \t%d" % count
+    # print "\n\nComputing grand total..."
+    # print "\nTotal annotations: \t\t%d" % len(client.getAnnotations())
+    # print "Total annotations cleaned: \t%d" % count
