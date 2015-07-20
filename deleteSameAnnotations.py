@@ -50,21 +50,21 @@ if __name__ == '__main__':
     
     count = 0
     for l in client.getLayers():
-        print l.name
+        # print l.name
         annotations = client.getAnnotations(l._id)
-        print('annotations : %d' % len(annotations))
+        # print('annotations : %d' % len(annotations))
 
         # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
         # tmp = []
         # for a in annotations:
         #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
-        # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
+        # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
+        tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
 
         cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
-        print('annotations cleaned : %d\n' % len(cleaned))
+        # print('annotations cleaned : %d\n' % len(cleaned))
 
         count += len(cleaned)
 
@@ -78,5 +78,5 @@ if __name__ == '__main__':
         #     print x
 
     print "\n\nComputing grand total..."
-    print "\nTotal annotations: \t%d" % len(client.getAnnotations())
+    print "\nTotal annotations: \t\t%d" % len(client.getAnnotations())
     print "Total annotations cleaned: \t%d" % count
