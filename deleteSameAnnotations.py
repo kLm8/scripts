@@ -60,6 +60,7 @@ if __name__ == '__main__':
         #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
         tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
+        # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
 
         cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
@@ -76,5 +77,6 @@ if __name__ == '__main__':
         # for x in sorted(cleaned, key=lambda k: k['start']):
         #     print x
 
-    print "\n\nTotal annotations: \t%d" % len(client.getAnnotations())
+    print "\n\nComputing grand total..."
+    print "\nTotal annotations: \t%d" % len(client.getAnnotations())
     print "Total annotations cleaned: \t%d" % count
