@@ -50,24 +50,31 @@ if __name__ == '__main__':
     
     count = 0
     for l in client.getLayers():
-        if "old" in l.name:
+        if "annotateur" in l.name:
             print l.name
             annotations = client.getAnnotations(l._id)
             print('annotations : %d' % len(annotations))
-            if len(annotations) > 0:
-                print annotations[0]
 
             # tmp = [[(u'start', a['fragment']['start']), (u'end', a['fragment']['end']), (u'data', a['data'])] for a in annotations]
             # tmp = []
             # for a in annotations:
             #     tmp.append({'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']})
 
-            tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], u'id_medium': a['id_medium']} for a in annotations]
-            # tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data']} for a in annotations]
+            tmp = [{'start': a['fragment']['start'], 'end': a['fragment']['end'], u'data': a['data'], 'id_medium': a['id_medium']} for a in annotations]
 
             cleaned = [dict(t) for t in set([tuple(d.items()) for d in tmp])]
 
-            print('annotations cleaned : %d\n' % len(cleaned))
+            seen = set()
+            doublons = []
+            for d in tmp:
+                t = tuple(d.items())
+                if t not in seen:
+                    seen.add(t)
+                else:
+                    doublons.append(d)
+
+            print('annotations cleaned : %d' % len(cleaned))
+            print('doublons : %d\n' % len(doublons))
 
             count += len(cleaned)
 
