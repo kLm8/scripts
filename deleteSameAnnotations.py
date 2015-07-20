@@ -69,12 +69,12 @@ if __name__ == '__main__':
         print('doublons : %d\n' % len(doublons))
 
         count += len(cleaned)
-        deleted += len(doublons)
 
-        for i in indices:
+        # for i in indices:
             # data = "DELETE__%s" % annotations[i].data
             # client.createAnnotation(layer=l._id, medium=annotations[i].id_medium, fragment=annotations[i].fragment, data=data)
-            client.deleteAnnotation(annotations[i]._id)
+            # client.deleteAnnotation(annotations[i]._id)
+            # deleted += 1
 
         # print "\nannotations:\n\n"
         # for x in sorted(tmp, key=lambda k: k['start']):
