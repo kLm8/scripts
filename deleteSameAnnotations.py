@@ -70,11 +70,11 @@ if __name__ == '__main__':
 
         count += len(cleaned)
 
-        # for i in indices:
+        for i in indices:
             # data = "DELETE__%s" % annotations[i].data
             # client.createAnnotation(layer=l._id, medium=annotations[i].id_medium, fragment=annotations[i].fragment, data=data)
-            # client.deleteAnnotation(annotations[i]._id)
-            # deleted += 1
+            client.deleteAnnotation(annotations[i]._id)
+            deleted += 1
 
         # print "\nannotations:\n\n"
         # for x in sorted(tmp, key=lambda k: k['start']):
