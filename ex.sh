@@ -1,10 +1,10 @@
 #!/bin/bash
-
-docker stop test
-docker rm test
+ 
+docker stop web-dev
+docker rm web-dev
 cd /home/gossart/camomile-web-frontend
 git pull
-docker rmi web-dev
-docker build -t web-dev .
-docker run -d -p 8080:8070 -e CAMOMILE_API=http://vmjoker:32781 -e CAMOMILE_LOGIN=admin -e CAMOMILE_PASSWORD=p455w0rd --name test web-dev
+docker rmi klm8/camomile-web-frontend-dev
+docker build -t klm8/camomile-web-frontend-dev .
+docker run -d --restart=always -p 8080:8070 -e CAMOMILE_API=http://vmjoker.limsi.fr:32781 -e CAMOMILE_LOGIN=admin -e CAMOMILE_PASSWORD=p455w0rd --name web-dev klm8/camomile-web-frontend-dev
 
