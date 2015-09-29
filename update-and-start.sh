@@ -75,7 +75,7 @@ echo -e "$CYAN" "\n\tRemoving the old container...\n" "$NORMAL"
 docker rm web
 
 echo -e "$CYAN" "\n\tRunning the new container\n""$NORMAL"
-docker run 	-d -p 8070:8070 \
+docker run 	-d -p 8070:8070 --restart=always \
 			-e CAMOMILE_API=http://vmjoker.limsi.fr:$3 \
 			-e CAMOMILE_LOGIN=$1 \
 			-e CAMOMILE_PASSWORD=$2 \

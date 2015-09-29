@@ -1,5 +1,7 @@
 #!/bin/bash
- 
+
+## Stop and restart frontend from Git sources
+
 docker stop web-dev
 docker rm web-dev
 cd /home/gossart/camomile-web-frontend
